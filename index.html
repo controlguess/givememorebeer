@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GETMEMOREBEER</title>
+<style>
+@import url('https://fonts.cdnfonts.com/css/buchi-sans');
+
+:root{
+--bg:#090909;
+--glass:rgba(255,255,255,.08);
+--stroke:rgba(255,255,255,.14);
+--text:#f5f5f5;
+}
+*{box-sizing:border-box;-webkit-user-select:none;user-select:none}
+html{scroll-behavior:smooth}
+body{
+margin:0;background:
+radial-gradient(circle at 20% 20%,rgba(255,255,255,.08),transparent 40%),
+linear-gradient(#080808,#0e0e0e);
+color:var(--text);
+font-family:"Buchi Sans",sans-serif;
+overflow-x:hidden;
+}
+section{min-height:100vh;position:relative}
+.hero{
+display:grid;place-items:center;
+}
+.bgtext{
+position:absolute;
+font-size:clamp(7rem,18vw,18rem);
+opacity:.08;
+letter-spacing:-.06em;
+white-space:nowrap;
+top:45%;
+left:50%;
+transform:translate(-50%,-50%);
+}
+.glass{
+backdrop-filter:blur(30px);
+background:var(--glass);
+border:1px solid var(--stroke);
+border-radius:36px;
+box-shadow:0 20px 60px rgba(0,0,0,.45), inset 0 1px rgba(255,255,255,.15);
+}
+.card{
+width:min(1200px,90vw);
+height:78vh;
+position:relative;
+overflow:hidden;
+}
+.mock{
+position:absolute;
+left:50%;
+top:52%;
+width:min(44vw,560px);
+transform:translate(-50%,-50%);
+transition:transform .08s linear;
+filter:drop-shadow(0 60px 120px rgba(0,0,0,.8));
+}
+.shirt{
+width:100%;
+aspect-ratio:1;
+border-radius:24px;
+background: none;
+linear-gradient(145deg,#111,#2a2a2a);
+display:grid;
+place-items:center;
+font-size:2rem;
+position:relative;
+overflow:hidden;
+}
+.shirt img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    pointer-events:none;
+    user-select:none;
+}
+.shirt:before{
+position:absolute;
+font-size:5vw;
+opacity:.08;
+}
+.shirt span{
+font-size:6rem;
+}
+.headline{
+position:absolute;
+left:8%;
+bottom:10%;
+max-width:600px;
+}
+h1{
+font-size:clamp(3rem,8vw,8rem);
+line-height:.9;margin:0;
+}
+p{opacity:.75;font-size:1.1rem}
+.scroll{
+position:absolute;right:40px;bottom:40px;opacity:.6
+}
+.panel{
+display:grid;
+place-items:center;
+padding:10vh 8vw;
+}
+.copy{
+max-width:900px;
+font-size:clamp(2rem,4vw,4rem);
+line-height:1;
+}
+.float{
+position:absolute;
+width:260px;height:260px;
+border-radius:999px;
+backdrop-filter:blur(80px);
+background:rgba(255,255,255,.05);
+}
+.a{top:10%;left:10%}
+.b{right:12%;bottom:10%}
+</style>
+</head>
+<body>
+
+<section class="hero">
+<div class="bgtext" data-speed=".25">GIVEMEMOREBEER</div>
+
+<div class="card glass">
+<div class="float a"></div>
+<div class="float b"></div>
+
+<div class="mock" data-speed=".5">
+<div class="shirt">
+    <img
+        src="https://shop.getmemore.beer/img/bb069c38-6d61-4c50-8a3c-457e02dbb8be.png"
+        alt="shirt"
+        draggable="false"
+    >
+</div>
+</div>
+
+<div class="headline">
+<h1>LOUD<br>GRAPHICS</h1>
+<p>Streetwear inspired by people like you.</p>
+</div>
+
+<div class="scroll">SCROLL ↓</div>
+</div>
+</section>
+
+<section class="panel">
+<div class="copy glass" style="padding:50px">
+NOT BASIC.<br>
+NOT QUIET.<br>
+DROP 001.
+</div>
+</section>
+
+<script>
+const layers=[...document.querySelectorAll("[data-speed]")];
+
+window.addEventListener("scroll",()=>{
+const y=scrollY;
+layers.forEach(el=>{
+const s=Number(el.dataset.speed);
+el.style.transform=`translate(-50%,calc(-50% + ${y*s}px))`;
+});
+});
+
+document.addEventListener("mousemove",(e)=>{
+const shirt=document.querySelector(".mock");
+const x=(e.clientX/window.innerWidth-.5)*20;
+const y=(e.clientY/window.innerHeight-.5)*20;
+shirt.style.transform=
+`translate(calc(-50% + ${x}px),calc(-50% + ${y}px))`;
+});
+</script>
+
+</body>
+</html>
